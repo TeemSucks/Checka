@@ -46,7 +46,7 @@
 <input type="number" id="Cost" name="Cost" class="input" placeholder="Enter Cost!">
 </div>
 </div>
- <button onclick="uploadFile()" class="button is-link is-small">Upload</button>
+ <button onclick="uploadFile()" class="button is-link is-small upload">Upload</button>
   <span class="tag is-primary is-light is-medium">File: None</span>
  <br>
  <br>
@@ -54,7 +54,7 @@
     <button onclick="sendMessage()" class="button is-primary is-fullwidth">Send</button>
 </div>
   </body>
-
+  <script scr="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
   <script>
     function sendMessage() {
       
@@ -77,8 +77,16 @@
       request.send(JSON.stringify(params));
     }
     
-    function uploadFile() {
-    alert('not done yet')
+    function uploadFile() {      
+      const APIKey = "ARA6kby1OQxKa4nQo47MZz";
+      const client = filestack.init(APIKey);
+      
+      const options = {
+      	onUploadDone: (uploadResponse) => {
+      		console.log('onUploadDone', uploadResponse);
+      	},
+      };
+    client.picker(options).open();    
     }
   </script>
   </div>
