@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Test</title>
+  </head>
+  <body>
+  <label for="Name">Name:</label>
+<input type="text" id="Name" name="Name" placeholder="Enter name!">
+<br>
+  <label for="Discription">Discription:</label>
+<input type="text" id="Discription" name="Discription" placeholder="Enter Discription!">
+<br>
+ <button onclick="uploadFile()">Upload</button>
+  <label for="File">No file selected</label>
+ <br>
+ <br>
+    <button onclick="sendMessage()">Send</button>
+  </body>
+
+  <script>
+    function sendMessage() {
+      
+      //filter
+      var NameText = document.getElementById('Name').value;
+  if (NameText.indexOf('@') > -1) {
+   //ping
+   alert('Your mesage was filtered... please change it.');
+  } else {
+    //send
+    const text = "e"
+      var Name = document.getElementsById('Name')[0].value
+      var Discription = document.getElementsById('Discription')[0].value
+      
+      const request = new XMLHttpRequest();
+      request.open("POST", "https://discord.com/api/webhooks/1061475020372717639/rGax07AzM6cbi6zVBztg9h3wmWDDXyzAgKP11GV0bJhrP1jG25aBiGGmT6b5EwrfxYpe");
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      const params = {
+        username: "My Webhook Name",
+        avatar_url: "",
+        content: "Name: " + Name + "\nDiscription: " + Discription
+      }
+
+      request.send(JSON.stringify(params));
+    }
+    
+    alert('Sucsess');
+  }
+      //send
+      
+    
+    function uploadFile() {}
+  </script>
+</html>
