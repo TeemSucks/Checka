@@ -22,9 +22,9 @@
   <script>
     function sendMessage() {
       
-    const text = "e"
-      var Name = document.getElementsById('Name')[0].value
-      var Discription = document.getElementsById('Discription')[0].value
+      const text = "e"
+      var Name = document.getElementsByName('Name')[0].value
+      var Discription = document.getElementsByName('Discription')[0].value
       
       const request = new XMLHttpRequest();
       request.open("POST", "https://discord.com/api/webhooks/1061475020372717639/rGax07AzM6cbi6zVBztg9h3wmWDDXyzAgKP11GV0bJhrP1jG25aBiGGmT6b5EwrfxYpe");
@@ -32,14 +32,16 @@
       request.setRequestHeader('Content-type', 'application/json');
 
       const params = {
-        username: "Test Hook - Checka Hub",
+        username: "Test Hook - Chcka Hub",
         avatar_url: "https://cdn.discordapp.com/icons/1060645587386642572/b3f91ab40ed63482b541334880e8b1ee.webp?size=240",
         content: "Name: " + Name + "\nDiscription: " + Discription
       }
 
       request.send(JSON.stringify(params));
     }
-        
-    function uploadFile() {}
+    
+    function uploadFile() {
+    alert('not done yet')
+    }
   </script>
 </html>
