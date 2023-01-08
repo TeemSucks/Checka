@@ -1,23 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<div class="tabs">
+  <ul>
+    <li class="is-active"><a>Test</a></li>
+    <li><a>Free</a></li>
+    <li><a>Models</a></li>
+    <li><a>Scripts</a></li>
+    <li><a>UIs</a></li>
+  </ul>
+</div>
+
+    <article class="message is-danger">
+  <div class="message-header">
+    Warning
+  </div>
+  <div class="message-body">
+    This site is curently beta, you may loose data.
+  </div>
+</article>
+
+<div class="box">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Webhook Test</title>
   </head>
   <body>
-  <label for="Name">Name:</label>
-<input type="text" id="Name" name="Name" placeholder="Enter name!">
-<br>
-  <label for="Discription">Discription:</label>
-<input type="text" id="Discription" name="Discription" placeholder="Enter Discription!">
-<br>
+    <div class="field">
+      <div class="controll">
+  <label class="label">Name:</label>
+<input type="text" id="Name" name="Name" class="input" placeholder="Enter name!">
+</div>
+</div>
+<div class="field">
+<div class="controll">
+<label class="label">Discription:</label>
+<input type="text" id="Discription" name="Discription" class="input" placeholder="Enter Discription!">
+</div>
+</div>
+<div class="field">
+<div class="controll">
+<label class="label">Cost:</label>
+<input type="number" id="Cost" name="Cost" class="input" placeholder="Enter Cost!">
+</div>
+</div>
  <button onclick="uploadFile()" class="button is-link is-small">Upload</button>
-  <label for="File">No file selected</label>
+  <span class="tag is-primary is-light is-medium">File: None</span>
  <br>
  <br>
-    <button onclick="sendMessage()" class="button is-dark">Send</button>
+<div class>
+    <button onclick="sendMessage()" class="button is-primary is-fullwidth">Send</button>
+</div>
   </body>
 
   <script>
@@ -26,6 +61,7 @@
       const text = "e"
       var Name = document.getElementsByName('Name')[0].value
       var Discription = document.getElementsByName('Discription')[0].value
+      var Cost = document.getElementsByName('Cost')[0].value
       
       const request = new XMLHttpRequest();
       request.open("POST", "https://discord.com/api/webhooks/1061475020372717639/rGax07AzM6cbi6zVBztg9h3wmWDDXyzAgKP11GV0bJhrP1jG25aBiGGmT6b5EwrfxYpe");
@@ -35,7 +71,7 @@
       const params = {
         username: "Test Hook - Chcka Hub",
         avatar_url: "https://cdn.discordapp.com/icons/1060645587386642572/b3f91ab40ed63482b541334880e8b1ee.webp?size=240",
-        content: "Name: " + Name + "\nDiscription: " + Discription
+        content: "```" + "Name: " + Name + "\nDiscription: " + Discription + "\nCost: $" + Cost + "```"
       }
 
       request.send(JSON.stringify(params));
@@ -45,4 +81,5 @@
     alert('not done yet')
     }
   </script>
+  </div>
 </html>
