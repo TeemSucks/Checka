@@ -22,13 +22,6 @@
   <script>
     function sendMessage() {
       
-      //filter
-      var NameText = document.getElementById('Name').value;
-  //if (NameText.indexOf('@') > -1) {
-   //ping
- //  alert('Your mesage was filtered... please change it.');
-//  } else {
-    //send
     const text = "e"
       var Name = document.getElementsById('Name')[0].value
       var Discription = document.getElementsById('Discription')[0].value
@@ -39,19 +32,14 @@
       request.setRequestHeader('Content-type', 'application/json');
 
       const params = {
-        username: "My Webhook Name",
-        avatar_url: "",
+        username: "Test Hook - Checka Hub",
+        avatar_url: "https://cdn.discordapp.com/icons/1060645587386642572/b3f91ab40ed63482b541334880e8b1ee.webp?size=240",
         content: "Name: " + Name + "\nDiscription: " + Discription
       }
 
       request.send(JSON.stringify(params));
     }
-    
-    alert('Sucsess');
-  //}
-      //send
-      
-    
+        
     function uploadFile() {}
   </script>
 </html>
