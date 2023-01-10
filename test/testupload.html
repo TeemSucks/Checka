@@ -1,0 +1,31 @@
+<form>
+  <input type="file" name="myFile" id="fileInput">
+  <button type="button" onclick="uploadFile()">Upload File</button>
+</form>
+
+<script>
+  // Initialize the Filestack client
+  var client = filestack.init('ARA6kby1OQxKa4nQo47MZz');
+
+  // Define the uploadFile function
+  function uploadFile() {
+    // Get the file input element
+    var fileInput = document.getElementById('fileInput');
+
+    // Make sure a file was selected
+    if (fileInput.files.length > 0) {
+      // Create a new File object
+      var file = fileInput.files[0];
+
+      // Change the file extension
+      file.name = file.name.replace(/.(?![^.]+$)/, '.rbxm');
+
+      // Upload the file to Filestack
+      client.upload(file).then(function(result) {
+        console.log('File uploaded successfully: ', result.url);
+      }).catch(function(error) {
+        console.error('An error occurred: ', error);
+      });
+    }
+  }
+</script>
