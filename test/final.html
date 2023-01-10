@@ -9,7 +9,7 @@
 
 <script>
   // Initialize the Filestack client
-  var client = filestack.init('ARA6kby1OQxKa4nQo47MZz');
+  var client = filestack.init(process.env.FILESTACKAPIKEY);
 
   // Define the uploadFile function
   function uploadFile() {
@@ -52,7 +52,7 @@
     xhr.open('PUT', `https://api.github.com/repos/TeemSucks/Ckheca/contents/userinput/files/${id}`);
 
     // Set the Authorization header
-    xhr.setRequestHeader('Authorization', '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');
+    xhr.setRequestHeader('Authorization', process.env.TOKEN);
 
     // Send the request
     xhr.send(formData);
