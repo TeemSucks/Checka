@@ -1,0 +1,85 @@
+<form>
+  <input type="file" name="myFile" id="fileInput">
+  <button type="button" onclick="uploadFile()">Upload File</button>
+</form>
+
+<div id="fileList"></div>
+
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+
+<script>
+  // Initialize the Filestack client
+  var client = filestack.init('ARA6kby1OQxKa4nQo47MZz');
+
+  // Define the uploadFile function
+  function uploadFile() {
+    // Get the file input element
+    var fileInput = document.getElementById('fileInput');
+
+    // Make sure a file was selected
+    if (fileInput.files.length > 0) {
+      // Create a new File object
+      var file = fileInput.files[0];
+
+      // Upload the file to Filestack
+      client.upload(file).then(function(result) {
+        // Get the URL of the uploaded file
+        var url = result.url;
+
+        // Extract the ID from the URL
+        var id = url.substring(33);
+
+        // Create a new file in the GitHub repository
+        createGitHubFile(id, file);
+      }).catch(function(error) {
+        console.error('An error occurred: ', error);
+      });
+    }
+  }
+
+  // Define the createGitHubFile function
+  function createGitHubFile(id, file) {
+    // Create a new FormData object
+    var formData = new FormData();
+
+    // Add the file to the FormData object
+    formData.append('content', file);
+
+    // Create an XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Set the URL to the GitHub API
+    xhr.open('PUT', `https://api.github.com/repos/TeemSucks/Ckheca/contents/userinput/files/${id}`);
+
+    // Set the Authorization header
+    xhr.setRequestHeader('Authorization', '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');
+
+    // Send the request
+    xhr.send(formData);
+
+    // Handle the response
+    xhr.onload = function() {
+      if (xhr.status === 201) {
+        // Add a link to the file on the website
+        addLinkToFile(id, file);
+      } else {
+        console.error('An error occurred: ' + xhr.status);
+      }
+    };
+  }
+
+  // Define the addLinkToFile function
+  function addLinkToFile(id, file) {
+    // Create a new link element
+    var link = document.createElement('a');
+
+    // Set the link's href attribute to the file's URL
+    link.href = `https://github.com/TeemSucks/Ckheca/blob/main/userinput/files/${id}`;
+
+    // Set the link's text to the file's name
+    link.text = file.name;
+
+    // Append the link to the file list
+    document.getElementById('fileList').appendChild(link);
+  }
+</script>
