@@ -23,6 +23,8 @@
       // Upload the file to Filestack
       client.upload(file).then(function(result) {
         console.log('File uploaded successfully: ', result.url);
+        const id = result.url.substring(0, 32);
+        console.log(id)
       }).catch(function(error) {
         console.error('An error occurred: ', error);
       });
