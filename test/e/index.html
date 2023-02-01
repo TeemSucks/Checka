@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Test</title>
+  </head>
+  <body>
+    <!-- Form for capturing Name, Discription, and Cost -->
+    <div class="field">
+      <div class="controll">
+        <label class="label">Name:</label>
+        <input type="text" id="Name" name="Name" class="input" placeholder="Enter name">
+      </div>
+    </div>
+    <div class="field">
+      <div class="controll">
+        <label class="label">Discription:</label>
+        <input type="text" id="Discription" name="Discription" class="input" placeholder="Enter Discription">
+      </div>
+    </div>
+    <div class="field">
+      <div class="controll">
+        <label class="label">Cost:</label>
+        <input type="number" id="Cost" name="Cost" class="input" placeholder="Enter Cost">
+      </div>
+    </div>
+    <!-- Button for sending the form data to the webhook -->
+    <button onclick="sendMessage()" class="button is-primary is-fullwidth">Send</button>
+  </body>
+  <script>
+    function sendMessage() {
+      // Get the form data
+      var Name = document.getElementsByName('Name')[0].value
+      var Discription = document.getElementsByName('Discription')[0].value
+      var Cost = document.getElementsByName('Cost')[0].value
+      
+      // Create a new XMLHttpRequest
+      const request = new XMLHttpRequest();
+      
+      // Set the URL of the webhook
+      const webhookURL = "https://discord.com/api/webhooks/1070479344939577434/njsbDnFargzWKaGOwaKsr2v3cKZjzQ7YNbX0tYFL9U9QeTVkjdZzMptPtPAg1fkaR9MS"
+      
+      // Open a POST request to the webhook URL
+      request.open("POST", webhookURL);
+      
+      // Set the content type to application/json
+      request.setRequestHeader('Content-type', 'application/json');
+      
+      // Build the JSON payload to send to the webhook
+      const payload = {
+        username: "Test Hook",
+        avatar_url: "https://cdn.discordapp.com/icons/1060645587386642572/b3f91ab40ed63482b541334880e8b1ee.webp?size=240",
+        content: "```" + "Name: " + Name + "\nDiscription: " + Discription + "\nCost: $" + Cost + "```"
+      }
+      
+      // Send the JSON payload to the webhook
+      request.send(JSON.stringify(payload));
+    }
+  </script>
+</html>
